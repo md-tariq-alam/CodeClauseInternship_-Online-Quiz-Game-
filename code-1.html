@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Quiz Game</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; }
+        h1 { font-size: 2rem; margin-bottom: 1rem; }
+        ul, li { list-style: none; padding: 0; margin: 0; }
+        li { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.5rem; }
+        input[type="radio"] { margin-right: 0.5rem; }
+        button { background-color: #4CAF50; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; }
+        button:hover { background-color: #3E8E41; }
+        .score { margin-top: 2rem; font-size: 1.5rem; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Online Quiz Game</h1>
+    <form id="quiz">
+        <div class="question">
+            <h2>Question 1</h2>
+            <p>What is the capital of France?</p>
+            <label><input type="radio" name="q1" value="B"> B) Paris</label>
+        </div>
+        <div class="question">
+            <h2>Question 2</h2>
+            <p>What is the largest planet in our solar system?</p>
+            <label><input type="radio" name="q2" value="C"> C) Jupiter</label>
+        </div>
+        <div class="question">
+            <h2>Question 3</h2>
+            <p>What is the smallest country in the world?</p>
+            <label><input type="radio" name="q3" value="B"> B) Vatican City</label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <div class="score">Your score: <span id="score">0</span></div>
+    <script>
+        const quizForm = document.getElementById('quiz');
+        const scoreDisplay = document.getElementById('score');
+        const questions = [
+            { questionNumber: 1, correctAnswer: 'B' },
+            { questionNumber: 2, correctAnswer: 'C' },
+            { questionNumber: 3, correctAnswer: 'B' }
+        ];
+        
+        quizForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            let userScore = 0;
+            questions.forEach(question => {
+                const selectedAnswer = quizForm[`q${question.questionNumber}`].value;
+                if (selectedAnswer === question.correctAnswer) {
+                    userScore++;
+                }
+            });
+            scoreDisplay.textContent = userScore;
+        });
+    </script>
+</body>
+</html>
